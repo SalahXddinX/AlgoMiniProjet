@@ -1,0 +1,210 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+struct teacher {
+    int serialnumber;
+    char surname[20];
+    char name[20];
+    int numb_courses;
+    int numb_tds;
+    int numb_tps;
+};
+
+
+struct teacher teachers[100];
+int numbTeacher=0;
+int i,n;
+
+
+void add_teacher() {
+    int i,n;
+      printf("Total number of teachers : %d\n",numbTeacher);
+      printf("how many teachers you want to add? ");
+      scanf("%d",&n);
+for ( i=1 ; i<=n ; i++ ){
+       printf("enter serial number (must be unique): ");
+       scanf("%d", &teachers[numbTeacher].serialnumber);
+       printf("Enter surname: ");
+       scanf("%s",&teachers[numbTeacher].surname);
+
+       printf("Enter name: ");
+       scanf("%s",&teachers[numbTeacher].name);
+
+       printf("Enter number of courses: ");
+       scanf("%d", &teachers[numbTeacher].numb_courses);
+
+       printf("Enter number of TDs: ");
+       scanf("%d", &teachers[numbTeacher].numb_tds);
+
+       printf("Enter number of TPs: ");
+       scanf("%d", &teachers[numbTeacher].numb_tps);
+
+     numbTeacher++ ;
+     printf("You added the teacher's ID successfully\n\n");
+}
+}
+
+
+
+void search_teacher() {
+    printf("Total number of teachers : %d\n",numbTeacher);
+    int serialnumber;
+    printf("enter the serial number : ");
+    scanf("%d", &serialnumber);
+int i;
+    for (i = 0; i < numbTeacher; i++) {
+        if (teachers[i].serialnumber == serialnumber) {
+            printf("Surname: %s\n", teachers[i].surname);
+            printf("name: %s\n", teachers[i].name);
+            printf("Number of courses: %d\n", teachers[i].numb_courses);
+            printf("Number of TDs: %d\n", teachers[i].numb_tds);
+            printf("Number of TPs: %d\n", teachers[i].numb_tps);
+            return;
+        }
+    }
+ printf("Teacher not found\n");
+
+}
+
+
+
+void edit_teacher() {
+    printf("Total number of teachers : %d\n",numbTeacher);
+    int serialnumber;
+    printf("Enter serial number: ");
+    scanf("%d", &serialnumber);
+    int i;
+    char (choice);
+    for (i = 0; i < numbTeacher; i++) {
+        if (teachers[i].serialnumber == serialnumber) {
+            printf("1. Serial number: %d\n", teachers[i].serialnumber);
+            printf("2. Surname: %s\n", teachers[i].surname);
+            printf("3. name: %s\n", teachers[i].name);
+            printf("4. Number of courses: %d\n", teachers[i].numb_courses);
+            printf("5. Number of TDs: %d\n", teachers[i].numb_tds);
+            printf("6. Number of TPs: %d\n\n", teachers[i].numb_tps);
+            printf("choose what you want to edit ");
+            scanf(" %c", &choice);
+            switch (choice) {
+            case '1':
+                printf("New the new surname: ");
+                scanf("%d",teachers[i].serialnumber);
+            case '2':
+                printf("New the new surname: ");
+            scanf("%s", teachers[i].surname);
+                break;
+            case '3':
+                printf("New name: ");
+            scanf("%s", teachers[i].name);
+                break;
+            case '4':
+                printf("New number of courses: ");
+            scanf("%d", &teachers[i].numb_courses);
+                break;
+            case '5':
+                printf("New number of TDs: ");
+            scanf("%d", &teachers[i].numb_tds);
+                break;
+            case '6':
+                printf("New number of TPs: ");
+            scanf("%d", &teachers[i].numb_tps);
+                break;
+            default:
+                printf("Follow the instruction please\n");
+        }
+            return;
+        }
+    }
+    printf("Teacher not found, try again with another serial number!\n");
+}
+
+
+void delete_teacher() {
+             printf("Total number of teachers : %d\n",numbTeacher);
+int serialnumber;
+             printf("Serial number: %d\n", teachers[i].serialnumber);
+             printf("Surname: %s\n\n", teachers[i].surname);
+             printf("Enter serial number of the teacher that you want to delete : ");
+             scanf("%d", &serialnumber);
+int i;
+    for (i = 0; i < numbTeacher; i++) {
+        if (teachers[i].serialnumber == serialnumber) {
+            int j;
+              for (j = i; j < numbTeacher-1; j++) {
+                teachers[j] = teachers[j + 1];}
+            numbTeacher--;
+            return;}}
+printf("Teacher not found, try again with another serial number!\n");
+}
+
+
+
+
+
+
+void view_teachers() {
+    printf("Total number of teachers : %d\n",numbTeacher);
+    int i;
+    if (numbTeacher==0){
+    printf("There are no teachers ID to show\n");
+
+ }else{
+    for (i = 0; i < numbTeacher; i++) {
+        printf("Serial number: %d\n", teachers[i].serialnumber);
+        printf("Surname: %s\n", teachers[i].surname);
+        printf("name: %s\n", teachers[i].name);
+        printf("Number of courses: %d\n", teachers[i].numb_courses);
+        printf("Number of TDs: %d\n", teachers[i].numb_tds);
+        printf("Number of TPs: %d\n", teachers[i].numb_tps);
+        printf("\n");
+    }
+ }
+}
+
+
+
+
+
+int main() {
+    char choice;
+    do {system("cls");
+        printf("\n-----------------------------------------------WELCOME TO THE TEACHER'S ID---------------------------------------------\n");
+        printf("Total number of teachers : %d\n",numbTeacher);
+        printf("1. Add a Teacher ID\n");
+        printf("2. Search for a teacher\n");
+        printf("3. Edit a teacher's ID\n");
+        printf("4. Delete a teacher's ID\n");
+        printf("5. View all teachers ID\n");
+        printf("Q. Quit this program\n");
+        printf("choose what you want to do by typing from 1 to 5 or quit by typing (Q) : ");
+        scanf(" %c", &choice);
+         system("cls");
+        switch (choice) {
+            case '1':
+                add_teacher();
+                break;
+            case '2':
+                search_teacher();
+                break;
+            case '3':
+                edit_teacher();
+                break;
+            case '4':
+                delete_teacher();
+                break;
+            case '5':
+                view_teachers();
+                break;
+            case 'Q':
+            case 'q':
+                break;
+            default:
+                printf("Follow the instructions please\n");
+        }
+
+        printf("Do you want to return to the main menu?(Y/N) ");
+        scanf(" %c", &choice);
+    } while (choice == 'Y' || choice == 'y');
+
+    return 0;
+}
